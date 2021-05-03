@@ -9,29 +9,41 @@ using PizzaBox.Client.Models;
 
 namespace PizzaBox.Client.Controllers
 {
-    public class HomeController : Controller
+  [Route("[controller]/[action]")]
+  public class HomeController : Controller
+  {
+    [HttpGet]
+    public IActionResult Index()
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      ViewBag.Order = new OrderViewModel();
+      return View("index");
     }
+
+
+
+
+
+    // private readonly ILogger<HomeController> _logger;
+
+    // public HomeController(ILogger<HomeController> logger)
+    // {
+    //     _logger = logger;
+    // }
+
+    // public IActionResult Index()
+    // {
+    //     return View();
+    // }
+
+    // public IActionResult Privacy()
+    // {
+    //     return View();
+    // }
+
+    // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    // public IActionResult Error()
+    // {
+    //     return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    // }
+  }
 }
